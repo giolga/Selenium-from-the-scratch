@@ -15,7 +15,13 @@ from selenium.webdriver.support.expected_conditions import element_to_be_selecte
 driver = webdriver.Chrome()
 driver.get("http://www.google.com")
 
-element = driver.find_element(By.NAME, "kumi")
-element.send_keys("some text")
-element.send_keys(" and some", Keys.ARROW_DOWN)
-element.clear()
+# element = driver.find_element(By.NAME, "kumi")
+# element.send_keys("some text")
+# element.send_keys(" and some", Keys.ARROW_DOWN)
+# element.clear()
+
+element = driver.find_element(By.XPATH, "//select[@name='name']")
+all_options = element.find_elements(By.TAG_NAME, "option")
+for option in all_options:
+    print("Value is: %s" % option.get_attribute("value"))
+    option.click()
